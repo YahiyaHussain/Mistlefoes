@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - TroopPool
+  - Base
+  - Troop
+  - TroopContainerPool
+  - BasePool
+  - TroopSender
+  - ActiveTroopContainers
+  - EnemyAI
+  - BasicUnit
+  - ProjectilePool
+  - Projectile
+  - ArcherBase
+  - SpiritBar
+  - PlayerSelection
+  - Crosshair
+  - BombSender
+  - BombButton
+  - BackgroundAudio
+  - MainMenu
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - SpookyUnits
+  - MerryUnits
+  - Units
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
