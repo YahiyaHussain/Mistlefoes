@@ -12,8 +12,11 @@ public class EnemyAI : MonoBehaviour {
     List<Base> otherBases;
     int numberOtherBases;
     List<Base> selectedBases;
-
+    private int partysupplies;
+    public float partySuppliesMeter;
     private PlayerSelection player;
+
+    private DeployBomb bomber;
 
     Base target;
     [HideInInspector]
@@ -26,6 +29,7 @@ public class EnemyAI : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        bomber = GameObject.FindGameObjectWithTag("BombSender").GetComponent<DeployBomb>();
         TroopSender = GameObject.FindGameObjectWithTag("TroopSender").GetComponent<SendTroops>();
         //myTeam = Team.Spooky;
         BasePool = GameObject.FindGameObjectWithTag("BasePool").transform;
@@ -120,9 +124,46 @@ public class EnemyAI : MonoBehaviour {
                 Debug.Log("Enemy: Yay I win B)");
         }
     }
-
+    public void addSupplies(int supplies)
+    {
+        if (supplies + partysupplies > 1000)
+        {
+            partysupplies = 1000;
+        }
+        else
+        {
+            partysupplies = supplies + partysupplies;
+        }
+    }
+    private IEnumerator dropBombRoutinely()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            if (partysupplies > 250)
+            {
+                partysupplies -= 250;
+                Base strongest = null;
+                int itsPop = 0;
+                foreach(Base b in otherBases)
+                {
+                    if (b.myPopulation() > itsPop)
+                    {
+                        strongest = b;
+                        itsPop = b.myPopulation();
+                    }
+                }
+                if (strongest != null)
+                {
+                    bomber.sendBomb(strongest.gameObject.transform.position, myTeam);
+                }
+            }
+        }
+    }
     IEnumerator GreedyMoveAlgorithm()
     {
+        StartCoroutine(dropBombRoutinely());
+        partySuppliesMeter = partysupplies / 1000;
         if (myBases.Count == 0 && otherBases.Count == 0)
         {
             Debug.Log("Where the bases at, chap :P");
@@ -138,6 +179,14 @@ public class EnemyAI : MonoBehaviour {
                 foreach (Base b in myBases)
                 {
                     if (!b.gameObject.GetComponent<ArcherBase>() && !(b.gameObject.GetComponent<MineBase>()))
+                    {
+                        sumOfTroops += b.myPopulation() / 2;
+                        selectedBases.Add(b);
+                    }
+                }
+                if (selectedBases.Count == 0)
+                {
+                    foreach (Base b in myBases)
                     {
                         sumOfTroops += b.myPopulation() / 2;
                         selectedBases.Add(b);
@@ -171,6 +220,8 @@ public class EnemyAI : MonoBehaviour {
                         }
                     }
                 }
+
+                
                 if (weakestTarget != null)
                     TroopSender.main(selectedBases, weakestTarget, myTeam);
                 yield return new WaitForSeconds(.7f);

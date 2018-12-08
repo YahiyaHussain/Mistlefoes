@@ -181,7 +181,7 @@ public class TroopContainer : MonoBehaviour {
         {
             if ((goalLocation - unit.position).sqrMagnitude > .01f)
             {
-                unit.position = Vector3.MoveTowards(unit.position, goalLocation, Time.deltaTime * 5f);
+                unit.position = Vector3.MoveTowards(unit.position, goalLocation, Time.deltaTime * 7f);
             }
             else
             {

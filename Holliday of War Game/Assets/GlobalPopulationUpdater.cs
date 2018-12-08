@@ -53,7 +53,7 @@ public class GlobalPopulationUpdater : MonoBehaviour {
         while (true)
         {
             Base b;
-            foreach (Transform t in allBases)
+            foreach (Transform t in normalBases)
             {
                 b = t.GetComponent<Base>();
                 if (b.myPopulation() < b.myMaxPopulation())
