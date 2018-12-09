@@ -24,6 +24,7 @@ TagManager:
   - BackgroundAudio
   - MainMenu
   - MenuManager
+  - TroopParticlePool
   layers:
   - Default
   - TransparentFX

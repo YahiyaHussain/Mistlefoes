@@ -71,19 +71,31 @@ public class TroopContainer : MonoBehaviour {
     {
         currentTeam = team;
         targetBase = target.GetComponent<Base>();
+        transform.GetComponentInChildren<ParticleSystem>().Emit(numberOfTroops);
+
+        StartCoroutine(bringTroopContainerToBaseThenRecycle(target.transform, numberOfTroops));
         //units are about to be on the field, recycling them is not allowed
-        readyToRecycle = false;
+        //readyToRecycle = false;
 
         //add troups to this troopContainer
-        AddTroops(numberOfTroops);
+        //AddTroops(numberOfTroops);
 
         //set the target for the units
-        unitTargetBase = target;
+        //unitTargetBase = target;
 
         //need a coroutine to allow waiting
-        StartCoroutine(DisperseThenTargetThenRecyle(numberOfTroops));
+        //StartCoroutine(DisperseThenTargetThenRecyle(numberOfTroops));
     }
-
+    IEnumerator bringTroopContainerToBaseThenRecycle(Transform target, int numberOfTroops)
+    {
+        while ((transform.position - target.position).sqrMagnitude > 0.1)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, 5 * Time.deltaTime);
+            yield return null;
+        }
+        targetBase.affectPopulation(new popOp(numberOfTroops, currentTeam, popOpType.InvadingForce));
+        TCP.AcceptBackUnit(transform);
+    }
     IEnumerator DisperseThenTargetThenRecyle(int numberOfTroops)
     {
         //Ive decided distance 1.5 from base in a circle is a nice way to start

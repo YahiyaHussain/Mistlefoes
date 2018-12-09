@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d94eea925999f744ca17c9c0c2d92335
+guid: 09fef1afba99c2c46a97d3dca1e7b16d
 TextureImporter:
   fileIDToRecycleName:
     21300000: troops_0
@@ -123,66 +123,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: troops_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 80
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e90dd794f428c1e4993085a3e9f4fe38
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: troops_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 80
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3be0f48eac2a62b45871defa80c87639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: troops_2
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 80
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2466818650fb1024987ed0263bc898e7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: troops_3
       rect:
         serializedVersion: 2
@@ -191,7 +131,7 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -211,7 +151,7 @@ TextureImporter:
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,7 +171,7 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

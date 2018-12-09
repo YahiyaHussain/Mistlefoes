@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d94eea925999f744ca17c9c0c2d92335
+guid: 651d2e0122f27d14699d34190f9f6f92
 TextureImporter:
   fileIDToRecycleName:
     21300000: troops_0
@@ -131,7 +131,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,7 +151,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,73 +171,13 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 2466818650fb1024987ed0263bc898e7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: troops_3
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 64
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a50b46c7f33230489c28d49f69da08b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: troops_4
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 64
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 245ae5b04ff034b42bc4aa5d7353924f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: troops_5
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 64
-        width: 13
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 136d11f56c8cf214a8088ab31915c9da
       vertices: []
       indices: 
       edges: []
