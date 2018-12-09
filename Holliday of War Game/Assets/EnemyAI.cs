@@ -103,6 +103,7 @@ public class EnemyAI : MonoBehaviour {
         }
         else
         {
+            int selectedPop = 0;
             while (myBases.Count > 0 && otherBases.Count > 0)
             {
                 int randomNumberOfMyBases = UnityEngine.Random.Range(0, numberMyBases - 1);
@@ -115,9 +116,10 @@ public class EnemyAI : MonoBehaviour {
                 {
                     randomMyBaseIndex = UnityEngine.Random.Range(0, numberMyBases - 1);
                     selectedBases.Add(myBases[randomMyBaseIndex]);
+                    selectedPop += myBases[randomMyBaseIndex].myPopulation()/2;
                 }
                 target = otherBases[randomOtherBaseIndex];
-                if (target != null && selectedBases.Count != 0)
+                if (target != null && selectedBases.Count != 0 && target.myPopulation() - selectedPop < 0)
                     //troop sender does a lot to tie things together
                     TroopSender.main(selectedBases, target, myTeam);
                 yield return new WaitForSeconds(UnityEngine.Random.Range(4, 7));
