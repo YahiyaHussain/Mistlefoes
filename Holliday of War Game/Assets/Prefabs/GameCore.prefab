@@ -5155,23 +5155,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!1 &1614348491173236
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4296309346308600}
-  - component: {fileID: 82863038124822984}
-  - component: {fileID: 114202109653468014}
-  m_Layer: 0
-  m_Name: Background Audio
-  m_TagString: BackgroundAudio
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1614993202773954
 GameObject:
   m_ObjectHideFlags: 1
@@ -6870,7 +6853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1826605909807032
 GameObject:
   m_ObjectHideFlags: 1
@@ -9849,7 +9832,7 @@ Transform:
   - {fileID: 4546143264939616}
   - {fileID: 4259591327577554}
   m_Father: {fileID: 4969437196516494}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4258314082813724
 Transform:
@@ -10058,19 +10041,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4587301052786618}
   m_RootOrder: 118
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4296309346308600
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614348491173236}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5034144, y: 3.2973998, z: 0.343399}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4969437196516494}
-  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4296640575403576
 Transform:
@@ -14029,7 +13999,6 @@ Transform:
   - {fileID: 4642913552524518}
   - {fileID: 4101345464838310}
   - {fileID: 4010133423095308}
-  - {fileID: 4296309346308600}
   - {fileID: 4257435664672872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -23528,101 +23497,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!82 &82863038124822984
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614348491173236}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b86a78e415be14b898f60fe2c7695697, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!95 &95001797988663928
 Animator:
   serializedVersion: 3
@@ -29933,19 +29807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488a8136dcd106941a39506457b6f14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114202109653468014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1614348491173236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e980ebb39bd063b41b03c511104499b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentBeat: 0
-  bps: 0
 --- !u!114 &114202838796426088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -30213,8 +30074,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partySuppliesMeter: 0
-  timeBetweenAttacks: 0
-  timeBetweenBombs: 0
   myTeam: 1
   algToUse: 1
 --- !u!114 &114235658473197556
@@ -30969,7 +30828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead855fa02eb3d94d8fa0ae853ed356c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTeam: 2
 --- !u!114 &114304826118688954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -35145,10 +35003,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114916578125368974}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 114865763756115288}, m_MethodName: togglePause,
-          m_Mode: 1, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114771401665007532

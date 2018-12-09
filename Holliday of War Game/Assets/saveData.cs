@@ -5,16 +5,50 @@ using System.IO;
 
 public class saveData : MonoBehaviour {
 
-    string Level1DataPath = "Assets/Resources/SaveData/Level1Data";
-    // Use this for initialization
-    void recordLevelComplete(int LevelNumber)
+
+    public static void recordLevelComplete(int LevelNumber)
     {
-        StreamWriter writer = new StreamWriter(Level1DataPath,false);
-        writer.WriteLine("Complete");
+        if (LevelNumber == 1)
+        {
+            StreamWriter writer = new StreamWriter("Assets/Resources/SaveData/Level1Data.txt", true);
+            writer.WriteLine("Complete");
+        }
+        else if (LevelNumber == 2)
+        {
+            StreamWriter writer = new StreamWriter("Assets/Resources/SaveData/Level2Data.txt", true);
+            writer.WriteLine("Complete");
+        }
+        else if (LevelNumber == 3)
+        {
+            StreamWriter writer = new StreamWriter("Assets/Resources/SaveData/Level3Data.txt", true);
+            writer.WriteLine("Complete");
+        }
+        else
+        {
+            Debug.Log("cannot record data: error level doesnt exist");
+        }
     }
-    bool isLevelCompleted(int LevelNumber)
+    public static bool isLevelCompleted(int LevelNumber)
     {
-        StreamReader reader = new StreamReader(Level1DataPath, true);
-        return reader.ReadLine().Equals("Complete");
+        if (LevelNumber == 1)
+        {
+            StreamReader reader = new StreamReader("Assets/Resources/SaveData/Level1Data.txt", true);
+            return reader.ReadLine().Equals("Complete");
+        }
+        else if (LevelNumber == 2)
+        {
+            StreamReader reader = new StreamReader("Assets/Resources/SaveData/Level2Data.txt", true);
+            return reader.ReadLine().Equals("Complete");
+        }
+        else if (LevelNumber == 3)
+        {
+            StreamReader reader = new StreamReader("Assets/Resources/SaveData/Level3Data.txt", true);
+            return reader.ReadLine().Equals("Complete");
+        }
+        else
+        {
+            Debug.Log("cannot read data: error level doesnt exist");
+            return false;
+        }
     }
 }

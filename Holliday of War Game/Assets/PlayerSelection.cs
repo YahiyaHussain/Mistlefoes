@@ -14,7 +14,8 @@ public class PlayerSelection : MonoBehaviour {
 
     SendTroops TroopSender;
 
-    private backgroundAudio bA;
+    //private backgroundAudio bA;
+    private AudioManager AM;
 
 	// Use this for initialization
     public Team myTeam()
@@ -22,7 +23,7 @@ public class PlayerSelection : MonoBehaviour {
         return currenteam;
     }
 	void Start () {
-
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         TroopSender = GameObject.FindGameObjectWithTag("TroopSender").GetComponent<SendTroops>();
         //myTeam = Team.Merry;
         BasePool = GameObject.FindGameObjectWithTag("BasePool").transform;
@@ -32,15 +33,15 @@ public class PlayerSelection : MonoBehaviour {
         foreach(Transform place in BasePool){
             bases.Add(place.GetComponent<Base>());
         }
-        bA = GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<backgroundAudio>();
+        //bA = GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<backgroundAudio>();
 	}
 
     private IEnumerator bounceBaseToBeat(Base b)
     {
         while (true)
         {
-            int t = bA.currentBeat;
-            yield return new WaitUntil(() => bA.currentBeat == (t + 1) % bA.bps);
+            int t = AM.currentBeat;
+            yield return new WaitUntil(() => AM.currentBeat == (t + 1) % AM.bps);
             b.bounce();
         }
     }

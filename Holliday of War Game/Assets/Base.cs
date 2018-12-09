@@ -36,6 +36,7 @@ public class Base : Highlightable {
     float originalScaleZ;
     float originalScaleX;
     float originalScaleY;
+    AudioManager AM;
 
     Queue<popOp> populationOperations;
     public Team myTeam()
@@ -134,6 +135,7 @@ public class Base : Highlightable {
 
     private void Start()
     {
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         TCP = GameObject.FindGameObjectWithTag("TroopContainerPool").GetComponent<Pool>();
     currentTeam = startingTeam;
         initializeHighlightablePart();
@@ -165,8 +167,10 @@ public class Base : Highlightable {
     }
     public void startClone()
     {
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         TCP = GameObject.FindGameObjectWithTag("TroopContainerPool").GetComponent<Pool>();
-    originalScaleZ = transform.localScale.z;
+
+        originalScaleZ = transform.localScale.z;
         originalScaleX = transform.localScale.x;
         originalScaleY = transform.localScale.y;
 
@@ -198,7 +202,7 @@ public class Base : Highlightable {
             EAI.declareBaseMine(gameObject.GetComponent<Base>());
         else
             EAI.declareBaseNoLongerMine(gameObject.GetComponent<Base>());
-
+        AM.playTakeoverSound(newTeam);
         bob();
     }
 

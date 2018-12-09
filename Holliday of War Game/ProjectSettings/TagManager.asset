@@ -24,6 +24,9 @@ TagManager:
   - BackgroundAudio
   - MainMenu
   - MenuManager
+  - AudioManager
+  - EndingText
+  - EndingManager
   layers:
   - Default
   - TransparentFX

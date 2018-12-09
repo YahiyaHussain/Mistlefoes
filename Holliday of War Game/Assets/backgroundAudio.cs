@@ -26,12 +26,12 @@ public class backgroundAudio : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
         player = GameObject.FindGameObjectWithTag("PlayerSelection").GetComponent<PlayerSelection>();
         playerTeam = player.myTeam();
-        OhHaunted = Resources.Load<AudioClip>("Oh Come all Ye Haunted");
-        HolyFright = Resources.Load<AudioClip>("O Holy Fright");
-        Hallolose = Resources.Load<AudioClip>("Hallolose");
-        Hallowin = Resources.Load<AudioClip>("Hallowin");
-        Christmas_Lose = Resources.Load<AudioClip>("Christmas Lose");
-        Christmas_Win = Resources.Load<AudioClip>("Christmas Win");
+        //OhHaunted = Resources.Load<AudioClip>("Oh Come all Ye Haunted");
+        //HolyFright = Resources.Load<AudioClip>("O Holy Fright");
+        //Hallolose = Resources.Load<AudioClip>("Hallolose");
+        //Hallowin = Resources.Load<AudioClip>("Hallowin");
+        //Christmas_Lose = Resources.Load<AudioClip>("Christmas Lose");
+        //Christmas_Win = Resources.Load<AudioClip>("Christmas Win");
         me = GetComponent<AudioSource>();
 
         if (System.DateTime.Now.Second % 2 == 1)

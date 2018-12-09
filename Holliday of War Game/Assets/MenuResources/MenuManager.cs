@@ -29,6 +29,7 @@ public class MenuManager : MonoBehaviour
     //_________________Initialize___________________
     private void Awake()
     {
+        ChristmasTeamSelect();
         DontDestroyOnLoad(transform.parent);
     }
 
@@ -70,8 +71,8 @@ public class MenuManager : MonoBehaviour
         FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         SelectMenu.gameObject.SetActive(true);
         MainMenu.gameObject.SetActive(false);
-        ChristmasText.gameObject.SetActive(false);
-        HalloweenText.gameObject.SetActive(false);
+        //ChristmasText.gameObject.SetActive(false);
+        //HalloweenText.gameObject.SetActive(false);
     }
 
     public void GoToOptions()
