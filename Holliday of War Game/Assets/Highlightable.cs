@@ -23,10 +23,16 @@ public class Highlightable : MonoBehaviour {
     SpriteRenderer mySprite;
     Material highlightedMat;
     Material normalMat;
+
+    Material merryMat;
+    Material spookyMat;
+
     bool hasMouseOverIt;
     bool externallyHighlighted;
     [HideInInspector]
     public Team currentTeam;
+
+
 
     public bool HasMouseOverIt()
     {
@@ -34,12 +40,14 @@ public class Highlightable : MonoBehaviour {
     }
     public void initializeHighlightablePart()
     {
+        merryMat = Resources.Load<Material>("red");
+        spookyMat = Resources.Load<Material>("purple");
         normalMat = Resources.Load<Material>("normal");
         highlightedMat = Resources.Load<Material>("yellow");
         Sprite[] buildings = Resources.LoadAll<Sprite>("buildings");
         normalBase =buildings[3];
         normalArcher = buildings[5];
-        normalMine = Resources.Load<Sprite>("genericSquare");
+        normalMine = buildings[12];
         normalGeneric = Resources.Load<Sprite>("genericSquare");
         highlightedBase = Resources.Load<Sprite>("genericSquareHighlighted");
         highlightedArcher = Resources.Load<Sprite>("genericSquareHighlighted"); 
@@ -47,11 +55,11 @@ public class Highlightable : MonoBehaviour {
         highlightedGeneric = Resources.Load<Sprite>("genericSquareHighlighted");
         merryBase = buildings[0];
         merryArcher = buildings[4];
-        merryMine = Resources.Load<Sprite>("genericSquareMerry");
+        merryMine = buildings[12];
         merryGeneric = Resources.Load<Sprite>("genericSquareMerry");
         spookyBase = buildings[1];
         spookyArcher = buildings[2];
-        spookyMine = Resources.Load<Sprite>("genericSquareSpooky");
+        spookyMine = buildings[12];
         spookyGeneric = Resources.Load<Sprite>("genericSquareSpooky");
 
         mySprite = gameObject.GetComponent<SpriteRenderer>();
@@ -81,7 +89,22 @@ public class Highlightable : MonoBehaviour {
 
     public void makeCorrectTeamSprite()
     {
-
+        //temporary until parT palette swap
+        if (gameObject.GetComponent<MineBase>())
+        {
+            if (currentTeam.Equals(Team.Neutral))
+            {
+                mySprite.material = normalMat;
+            }
+            else if (currentTeam.Equals(Team.Merry))
+            {
+                mySprite.material = merryMat;
+            }
+            else
+            {
+                mySprite.material = spookyMat;
+            }
+        }
         if (currentTeam.Equals(Team.Neutral))
             if (gameObject.GetComponent<ArcherBase>())
             {

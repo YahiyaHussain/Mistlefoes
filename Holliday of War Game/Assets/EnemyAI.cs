@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour {
     private int partysupplies;
     public float partySuppliesMeter;
     private PlayerSelection player;
+    public float timeBetweenAttacks;
+    public float timeBetweenBombs;
 
     private DeployBomb bomber;
 
@@ -116,7 +118,7 @@ public class EnemyAI : MonoBehaviour {
                 if (target != null && selectedBases.Count != 0)
                     //troop sender does a lot to tie things together
                     TroopSender.main(selectedBases, target, myTeam);
-                yield return new WaitForSeconds(UnityEngine.Random.Range(2, 7));
+                yield return new WaitForSeconds(UnityEngine.Random.Range(timeBetweenAttacks, 7));
             }
             if (myBases.Count == 0)
                 Debug.Log("Enemy: I lost ;(");
@@ -139,7 +141,7 @@ public class EnemyAI : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(timeBetweenBombs);
             if (partysupplies > 250)
             {
                 partysupplies -= 250;
@@ -224,7 +226,7 @@ public class EnemyAI : MonoBehaviour {
                 
                 if (weakestTarget != null)
                     TroopSender.main(selectedBases, weakestTarget, myTeam);
-                yield return new WaitForSeconds(.7f);
+                yield return new WaitForSeconds(timeBetweenAttacks);
             }
             if (myBases.Count == 0)
                 Debug.Log("Enemy: I lost ;(");
@@ -315,7 +317,7 @@ public class EnemyAI : MonoBehaviour {
                 }
                 if (weakestTarget != null)
                     TroopSender.main(selectedBases, weakestTarget, myTeam);
-                yield return new WaitForSeconds(.7f);
+                yield return new WaitForSeconds(timeBetweenAttacks);
             }
             if (myBases.Count == 0)
             {
