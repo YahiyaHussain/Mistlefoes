@@ -29,6 +29,7 @@ public class MenuManager : MonoBehaviour
     //_________________Initialize___________________
     private void Awake()
     {
+        ChristmasTeamSelect();
         DontDestroyOnLoad(transform.parent);
     }
 
