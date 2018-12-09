@@ -137,6 +137,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string name)
     {
+        if (currentSong != null && currentSong.source.isPlaying == true)
+        {
+            return;
+        }
+
         Sound m = Array.Find(music, music => music.name == name);
         if (m == null)
         {
