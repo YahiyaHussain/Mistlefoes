@@ -1,6 +1,8 @@
-﻿using UnityEngine.Audio;
+﻿using System.Collections;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Sound
@@ -19,6 +21,7 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+
 }
 
 public class AudioManager : MonoBehaviour 
@@ -30,6 +33,12 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     private Sound currentSong;
+
+    private PlayerSelection player;
+    private Team playerTeam;
+
+    public int currentBeat;
+    public int bps; //beats per second
 
     void Awake()
     {
@@ -68,7 +77,8 @@ public class AudioManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        PlayMusic("OhComeAllYeHaunted");
+        playKringle();
+
         //SongSelect //Un-comment to randomly select a song to play on Start
     }
 
@@ -77,6 +87,53 @@ public class AudioManager : MonoBehaviour
     {
         //PlayNextSong(); //Un-comment to play a new song at the end of the last song.
     }
+    //_______________Cease Songs Immediately_________________________________________
+    public void stopAnyMusic()
+    {
+        currentSong.source.Stop();
+    }
+       
+    //_______________Custom Function To Play Kringle Bells Correctly__________________
+    public void playKringle()
+    {
+        PlayMusic("KringleBellsIntro");
+        StartCoroutine(playRightAfter("KringleBellsMain"));
+    }
+    private IEnumerator playRightAfter(String next)
+    {
+        yield return new WaitUntil(() => currentSong.source.isPlaying == false);
+        PlayMusic(next);
+    }
+    //_______________________________________________________________________________|
+
+    //_______________Custom Function To Play Right Takeover___________________________
+    public void playTakeoverSound(Team overtakerTeam)
+    {
+        if (overtakerTeam.Equals(Team.Spooky))
+        {
+            if (System.DateTime.Now.Second % 2 == 1)
+            {
+                PlaySound("HalloweenTakeover1");
+            }
+            else
+            {
+                PlaySound("HalloweenTakeover2");
+            }
+        }
+        else
+        {
+            if (System.DateTime.Now.Second % 2 == 1)
+            {
+                PlaySound("ChristmasTakeover1");
+            }
+            else
+            {
+                PlaySound("ChristmasTakeover2");
+            }
+        }
+    }
+
+    //_______________________________________________________________________________|
 
     public void PlayMusic(string name)
     {
@@ -134,6 +191,51 @@ public class AudioManager : MonoBehaviour
         }
 
     }
+    //____________________Functions to assure things happen in new scene______
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex > 0)
+        {
+            StopMusic("KringleBellsMain");
+            player = GameObject.FindGameObjectWithTag("PlayerSelection").GetComponent<PlayerSelection>();
+            playerTeam = player.myTeam();
+
+            if (System.DateTime.Now.Second % 2 == 1)
+            {
+                bps = 4;
+                StartCoroutine(keepTrackOfBeat(bps, 0.46153846153f));
+                PlayMusic("OhComeAllYeHaunted");
+            }
+            else
+            {
+                bps = 3;
+                StartCoroutine(keepTrackOfBeat(bps, 0.4f));
+                PlayMusic("OHolyFright");
+            }
+        }
+    }
+    //________________________________________________________________________|
+
+    //_____________________Coroutine To Allow Syncing To Beat____
+    private IEnumerator keepTrackOfBeat(int numberBeats, float bps)
+    {
+        yield return new WaitUntil(() => currentSong.source.isPlaying);
+        currentBeat = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(bps);
+            currentBeat = (currentBeat + 1) % numberBeats;
+        }
+    }
+    //________________________________________________________________________|
 
     //Play a random song after the end of the last song.
     public void PlayNextSong ()
