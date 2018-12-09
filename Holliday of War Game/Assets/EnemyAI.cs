@@ -116,7 +116,7 @@ public class EnemyAI : MonoBehaviour {
                 if (target != null && selectedBases.Count != 0)
                     //troop sender does a lot to tie things together
                     TroopSender.main(selectedBases, target, myTeam);
-                yield return new WaitForSeconds(UnityEngine.Random.Range(2, 7));
+                yield return new WaitForSeconds(UnityEngine.Random.Range(4, 7));
             }
             if (myBases.Count == 0)
                 Debug.Log("Enemy: I lost ;(");
@@ -235,6 +235,7 @@ public class EnemyAI : MonoBehaviour {
 
     IEnumerator GreedyTurtleMoveAlgorithm()
     {
+        StartCoroutine(dropBombRoutinely());
         if (myBases.Count == 0 && otherBases.Count == 0)
         {
             Debug.Log("Where the bases at, chap :P");
@@ -279,7 +280,8 @@ public class EnemyAI : MonoBehaviour {
                 foreach (Base b in otherBases)
                 {
                     float distance = (b.transform.position - averageMyBasePos).sqrMagnitude;
-                    BaseDistDict.Add(distance, b);
+                    if (!BaseDistDict.ContainsKey(distance))
+                        BaseDistDict.Add(distance, b);
                     Dists[i] = distance;
                     i++;
                 }

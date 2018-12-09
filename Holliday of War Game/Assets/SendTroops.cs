@@ -22,7 +22,7 @@ public class SendTroops : MonoBehaviour {
             //not allowed to empty a building fully
             if (b.myPopulation() > 1)
             {
-                b.StartCoroutine(b.SendTroopsFromBaseToTargetBase(target, senderTeam));
+                b.SendTroopsFromBaseToTargetBase(target, senderTeam);
             }
         }
     }

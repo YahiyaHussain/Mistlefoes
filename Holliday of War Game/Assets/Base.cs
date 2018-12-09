@@ -256,7 +256,7 @@ public class Base : Highlightable {
             yield return null;
         }
     }
-    public IEnumerator SendTroopsFromBaseToTargetBase(Base target, Team senderTeam)
+    public void SendTroopsFromBaseToTargetBase(Base target, Team senderTeam)
     {
         //reference to this coroutine's troopcontainer
         TroopContainer tempTroopContainer;
@@ -276,7 +276,6 @@ public class Base : Highlightable {
 
         //command the troopContainer To tell its units to go to target
         tempTroopContainer.GoToTargetBase(target.gameObject, tempTroopNumber, myTeam());
-        yield return null;
     }
 }
 
