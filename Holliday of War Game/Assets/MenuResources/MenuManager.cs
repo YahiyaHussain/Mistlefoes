@@ -27,17 +27,21 @@ public class MenuManager : MonoBehaviour
     //__________________Main Menu____________________
     public void GoToHowToPlay ()
     {
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         HowToMenu.gameObject.SetActive(true);
         MainMenu.gameObject.SetActive(false);
     }
 
     public void PlayGame()
     {
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
+        FindObjectOfType<AudioManager>().StopMusic("OhComeAllYeHaunted");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void GoToSelect()
     {
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         SelectMenu.gameObject.SetActive(true);
         MainMenu.gameObject.SetActive(false);
         ChristmasText.gameObject.SetActive(false);
@@ -46,12 +50,14 @@ public class MenuManager : MonoBehaviour
 
     public void GoToOptions()
     {
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         OptionsMenu.gameObject.SetActive(true);
         MainMenu.gameObject.SetActive(false);
     }
 
     public void QuitGame()
     {
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         Application.Quit();
     }
 
@@ -97,12 +103,13 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGameSpecific()
     {
-       
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
     }
 
     //__________________Options Menu____________________
     public void GoBackToMain()
     {
+        FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         SelectMenu.gameObject.SetActive(false);
         OptionsMenu.gameObject.SetActive(false);
         HowToMenu.gameObject.SetActive(false);
