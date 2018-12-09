@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114220363725060452}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,5 +51,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba59f0220e9745ad892d1b978c5bbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: []
-  sounds: []
+  music:
+  - name: OhComeAllYeHaunted
+    clip: {fileID: 8300000, guid: 850abe792444a334180e5933e5bbded9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: OHolyFright
+    clip: {fileID: 8300000, guid: 60d61a7a16a60b745a797c5a987070f6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: KringleBellsIntro
+    clip: {fileID: 8300000, guid: 4e4b04f7ea23dfd46b270f55fed4802c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: KringleBellsMain
+    clip: {fileID: 8300000, guid: f9e0b05245ab63b47908c5def9a45204, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  sounds:
+  - name: MenuClick
+    clip: {fileID: 8300000, guid: eb18e28a0b49b44458f0c7d395434356, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChristmasLose
+    clip: {fileID: 8300000, guid: 4473ca890a68dd84385256fb3e1cf9d0, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChristmasWin
+    clip: {fileID: 8300000, guid: 9fd7d76692a8c8540b46f3c50dc70cd4, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hallolose
+    clip: {fileID: 8300000, guid: 739a37d159465bd42bccd64fa29f3e00, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hallowin
+    clip: {fileID: 8300000, guid: e5b6a46d91c157740b01422d74dcd5b9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  currentBeat: 0
+  bps: 0

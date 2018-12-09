@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour {
 
     private DeployBomb bomber;
 
+
     Base target;
     [HideInInspector]
     public Team myTeam;
@@ -26,9 +27,12 @@ public class EnemyAI : MonoBehaviour {
 
     public AlgorithmType algToUse;
 
+    private EndingManager EM;
+
     // Use this for initialization
     void Start()
     {
+        EM = GameObject.FindGameObjectWithTag("EndingManager").GetComponent<EndingManager>();
         bomber = GameObject.FindGameObjectWithTag("BombSender").GetComponent<DeployBomb>();
         TroopSender = GameObject.FindGameObjectWithTag("TroopSender").GetComponent<SendTroops>();
         //myTeam = Team.Spooky;
@@ -119,9 +123,15 @@ public class EnemyAI : MonoBehaviour {
                 yield return new WaitForSeconds(UnityEngine.Random.Range(4, 7));
             }
             if (myBases.Count == 0)
+            {
                 Debug.Log("Enemy: I lost ;(");
+                EM.EndGame(true);
+            }
             else
+            {
                 Debug.Log("Enemy: Yay I win B)");
+                EM.EndGame(false);
+            }
         }
     }
     public void addSupplies(int supplies)
@@ -227,9 +237,15 @@ public class EnemyAI : MonoBehaviour {
                 yield return new WaitForSeconds(.7f);
             }
             if (myBases.Count == 0)
+            {
                 Debug.Log("Enemy: I lost ;(");
+                EM.EndGame(true);
+            }
             else
+            {
                 Debug.Log("Enemy: Yay I win B)");
+                EM.EndGame(false);
+            }
         }
     }
 
@@ -322,12 +338,12 @@ public class EnemyAI : MonoBehaviour {
             if (myBases.Count == 0)
             {
                 Debug.Log("Enemy: I lost ;(");
-                PlayerWin();
+                EM.EndGame(true);
             }
             else
             {
                 Debug.Log("Enemy: Yay I win B)");
-                PlayerLose();
+                EM.EndGame(false);
             }
         }
     }
