@@ -3653,7 +3653,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 673210208}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 57959290}
+        m_MethodName: PressLeftArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &673210208
@@ -4478,7 +4489,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 927528705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 57959290}
+        m_MethodName: PressRightArrow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &927528705
@@ -4652,11 +4674,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6534,6 +6556,16 @@ Prefab:
       propertyPath: ChristmasHouse
       value: 
       objectReference: {fileID: 131416230}
+    - target: {fileID: 114540498132022322, guid: bcf9c69d8bda348b5a07a46db3064525,
+        type: 2}
+      propertyPath: EMH
+      value: 
+      objectReference: {fileID: 930716473}
+    - target: {fileID: 114540498132022322, guid: bcf9c69d8bda348b5a07a46db3064525,
+        type: 2}
+      propertyPath: AIText
+      value: 
+      objectReference: {fileID: 930716475}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf9c69d8bda348b5a07a46db3064525, type: 2}
   m_IsPrefabAsset: 0

@@ -23,6 +23,7 @@ TagManager:
   - BombButton
   - BackgroundAudio
   - MainMenu
+  - MenuManager
   layers:
   - Default
   - TransparentFX

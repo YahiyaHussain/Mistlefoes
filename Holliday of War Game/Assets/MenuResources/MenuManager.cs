@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class MenuManager : MonoBehaviour 
 {
@@ -21,8 +20,22 @@ public class MenuManager : MonoBehaviour
     public GameObject HalloweenHouse;
     public GameObject ChristmasHouse;
 
-    private int TeamSelected = 0;
+    public TextMeshProUGUI AIText; 
+
+    private Team TeamSelected = Team.Merry;
+    private AlgorithmType enemyAI = AlgorithmType.Random;
     private int LevelSelected = 0;
+
+    //_________________Initialize___________________
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.parent);
+    }
+
+    //_________________View Choices_________________
+    public Team selectedTeam() { return TeamSelected; }
+
+    public AlgorithmType chosenEnemyAI() { return enemyAI; }
 
     //__________________Main Menu____________________
     public void GoToHowToPlay ()
@@ -36,7 +49,20 @@ public class MenuManager : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySound("MenuClick");
         FindObjectOfType<AudioManager>().StopMusic("OhComeAllYeHaunted");
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
+        foreach(Transform t in transform.parent)
+        {
+            if (t.tag == "MenuManager")
+            {
+                continue;
+            }
+            else
+            {
+                t.gameObject.SetActive(false);
+            }
+        }
     }
 
     public void GoToSelect()
@@ -67,14 +93,14 @@ public class MenuManager : MonoBehaviour
     {
         BonesButton.GetComponent<Button>().interactable = true;
         ElfButton.GetComponent<Button>().interactable = false;
-        TeamSelected = 1;
+        TeamSelected = Team.Merry;
     }
 
     public void HalloweenTeamSelect()
     {
         ElfButton.GetComponent<Button>().interactable = true;
         BonesButton.GetComponent<Button>().interactable = false;
-        TeamSelected = 2;
+        TeamSelected = Team.Spooky;
     }
 
     public void DefaultLevelSelect()
@@ -104,6 +130,43 @@ public class MenuManager : MonoBehaviour
     public void PlayGameSpecific()
     {
         FindObjectOfType<AudioManager>().PlaySound("MenuClick");
+    }
+
+    public void PressRightArrow()
+    {
+        switch (AIText.text)
+        {
+            case "Easy":
+                enemyAI = AlgorithmType.Greedy;
+                AIText.text = "Norm";
+                break;
+            case "Norm":
+                enemyAI = AlgorithmType.GreedyTurtle;
+                AIText.text = "Hard";
+                break;
+            case "Hard":
+                enemyAI = AlgorithmType.Random;
+                AIText.text = "Easy";
+                break;
+        }
+    }
+    public void PressLeftArrow()
+    {
+        switch (AIText.text)
+        {
+            case "Easy":
+                enemyAI = AlgorithmType.GreedyTurtle;
+                AIText.text = "Hard";
+                break;
+            case "Norm":
+                enemyAI = AlgorithmType.Random;
+                AIText.text = "Easy";
+                break;
+            case "Hard":
+                enemyAI = AlgorithmType.Greedy;
+                AIText.text = "Norm";
+                break;
+        }
     }
 
     //__________________Options Menu____________________
