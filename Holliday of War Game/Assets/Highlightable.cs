@@ -143,7 +143,6 @@ public class Highlightable : MonoBehaviour {
         //no disobeying PlayerSelection-san
         if (!externallyHighlighted)
         {
-            mySprite.material = normalMat;
             makeCorrectTeamSprite();
         }
     }
