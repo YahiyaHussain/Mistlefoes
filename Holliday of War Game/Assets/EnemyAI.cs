@@ -70,6 +70,9 @@ public class EnemyAI : MonoBehaviour {
             case AlgorithmType.GreedyTurtle:
                 StartCoroutine(GreedyTurtleMoveAlgorithm());
                 break;
+            case AlgorithmType.SensibleRandom:
+                StartCoroutine(SensibleRandomAlgorithm());
+                break;
         }
 
     }
@@ -103,9 +106,11 @@ public class EnemyAI : MonoBehaviour {
         }
         else
         {
+            StartCoroutine(dropBombRoutinely());
             int selectedPop = 0;
             while (myBases.Count > 0 && otherBases.Count > 0)
             {
+                categorizeBases();
                 int randomNumberOfMyBases = UnityEngine.Random.Range(0, numberMyBases - 1);
                 //random.range(a,b) is a to b inclusive, inclusive
                 int randomOtherBaseIndex = UnityEngine.Random.Range(0, numberOtherBases - 1);
@@ -122,7 +127,7 @@ public class EnemyAI : MonoBehaviour {
                 if (target != null && selectedBases.Count != 0 && target.myPopulation() - selectedPop < 0)
                     //troop sender does a lot to tie things together
                     TroopSender.main(selectedBases, target, myTeam);
-                yield return new WaitForSeconds(UnityEngine.Random.Range(4, 7));
+                yield return new WaitForSeconds(1);
             }
             if (myBases.Count == 0)
             {
@@ -335,7 +340,7 @@ public class EnemyAI : MonoBehaviour {
                 }
                 if (weakestTarget != null)
                     TroopSender.main(selectedBases, weakestTarget, myTeam);
-                yield return new WaitForSeconds(.7f);
+                yield return new WaitForSeconds(.4f);
             }
             if (myBases.Count == 0)
             {
@@ -350,6 +355,82 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    IEnumerator SensibleRandomAlgorithm()
+    {
+        StartCoroutine(dropBombRoutinely());
+        if (myBases.Count == 0 && otherBases.Count == 0)
+        {
+            Debug.Log("Where the bases at, chap :P");
+        }
+        else
+        {
+
+            while (myBases.Count > 0 && otherBases.Count > 0)
+            {
+                int selectedPop = 0;
+                categorizeBases();
+
+                Vector3 averageMyBasePos = Vector3.zero;
+
+                HashSet<Base> selectedBases = new HashSet<Base>();
+                int sumOfTroops = 0;
+                foreach (Base b in myBases)
+                {
+                    if (!b.gameObject.GetComponent<ArcherBase>() && !(b.gameObject.GetComponent<MineBase>()))
+                    {
+                        sumOfTroops += b.myPopulation() / 2;
+                        selectedBases.Add(b);
+                    }
+                }
+                if (selectedBases.Count == 0)
+                {
+                    foreach (Base b in myBases)
+                    {
+                        sumOfTroops += b.myPopulation() / 2;
+                        selectedBases.Add(b);
+                    }
+                }
+
+                foreach (Base b in myBases)
+                {
+                    averageMyBasePos += b.transform.position;
+                }
+                averageMyBasePos /= myBases.Count;
+
+                Dictionary<float, Base> BaseDistDict = new Dictionary<float, Base>();
+                float[] Dists = new float[otherBases.Count];
+
+                int i = 0;
+                foreach (Base b in otherBases)
+                {
+                    float distance = (b.transform.position - averageMyBasePos).sqrMagnitude;
+                    if (!BaseDistDict.ContainsKey(distance))
+                        BaseDistDict.Add(distance, b);
+                    Dists[i] = distance;
+                    i++;
+                }
+                Array.Sort(Dists);
+
+                
+                int randomOtherBaseIndex = UnityEngine.Random.Range(0, Dists.Length - 1);
+
+                target = BaseDistDict[Dists[randomOtherBaseIndex]];
+                if (target != null && selectedBases.Count != 0 && target.myPopulation() - selectedPop < 0)
+                    TroopSender.main(selectedBases, target, myTeam);
+                yield return new WaitForSeconds(.4f);
+            }
+            if (myBases.Count == 0)
+            {
+                Debug.Log("Enemy: I lost ;(");
+                EM.EndGame(true);
+            }
+            else
+            {
+                Debug.Log("Enemy: Yay I win B)");
+                EM.EndGame(false);
+            }
+        }
+    }
     public void declareBaseMine(Base b)
     {
         otherBases.Remove(b);
@@ -372,5 +453,5 @@ public class EnemyAI : MonoBehaviour {
 }
 
 public enum AlgorithmType{
-    Random, Greedy, GreedyTurtle
+    Random, Greedy, GreedyTurtle, SensibleRandom
 }

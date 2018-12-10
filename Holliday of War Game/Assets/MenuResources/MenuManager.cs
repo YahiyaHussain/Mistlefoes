@@ -160,7 +160,7 @@ public class MenuManager : MonoBehaviour
                 AIText.text = "Hard";
                 break;
             case "Norm":
-                enemyAI = AlgorithmType.Random;
+                enemyAI = AlgorithmType.SensibleRandom;
                 AIText.text = "Easy";
                 break;
             case "Hard":
