@@ -137,7 +137,7 @@ public class EnemyAI : MonoBehaviour {
                 if (target != null && selectedBases.Count != 0 && target.myPopulation() - (selectedPop / 2.0f) < 0)
                     //troop sender does a lot to tie things together
                     TroopSender.main(selectedBases, target, myTeam);
-                yield return new WaitForSeconds(.8f);
+                yield return new WaitForSeconds(.6f);
             }
             if (myBases.Count == 0)
             {
@@ -227,7 +227,7 @@ public class EnemyAI : MonoBehaviour {
                 {
                     if (b.gameObject.GetComponent<ArcherBase>() == null)
                     {
-                        tempResult = sumOfTroops - b.myPopulation();
+                        tempResult = sumOfTroops - b.myPopulation() / 2;
                         if (tempResult > greatestResult)
                         {
                             greatestResult = tempResult;
@@ -251,7 +251,7 @@ public class EnemyAI : MonoBehaviour {
                 
                 if (weakestTarget != null)
                     TroopSender.main(selectedBases, weakestTarget, myTeam);
-                yield return new WaitForSeconds(.7f);
+                yield return new WaitForSeconds(.45f);
             }
             if (myBases.Count == 0)
             {
@@ -340,7 +340,7 @@ public class EnemyAI : MonoBehaviour {
                 {
                     for (i = 0; i < 5 && i < otherBases.Count; i++)
                     {
-                        tempResult = sumOfTroops - BaseDistDict[Dists[i]].myPopulation();
+                        tempResult = sumOfTroops - BaseDistDict[Dists[i]].myPopulation() / 2;
                         if (tempResult > greatestResult)
                         {
                             greatestResult = tempResult;
@@ -350,7 +350,7 @@ public class EnemyAI : MonoBehaviour {
                 }
                 if (weakestTarget != null)
                     TroopSender.main(selectedBases, weakestTarget, myTeam);
-                yield return new WaitForSeconds(.4f);
+                yield return new WaitForSeconds(.3f);
             }
             if (myBases.Count == 0)
             {
