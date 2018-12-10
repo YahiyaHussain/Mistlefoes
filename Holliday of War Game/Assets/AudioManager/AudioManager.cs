@@ -174,6 +174,17 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Play();
     }
+    //________________________Also Wanna Stop Sound_________________
+    public void StopSound(String name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound with " + name + " not found!");
+            return;
+        }
+        s.source.Stop();
+    }
 
     //Play a random song add or remove songs as needed
     void SongSelect() // randomly select a song to play

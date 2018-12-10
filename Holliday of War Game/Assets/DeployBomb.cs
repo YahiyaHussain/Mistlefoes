@@ -8,10 +8,12 @@ public class DeployBomb : MonoBehaviour {
     Camera camera;
     SpriteRenderer SR;
     Team playerTeam;
+    AudioManager AM;
 
     public float bombRange;
     // Use this for initialization
     void Start() {
+        AM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         Bombs = new Queue<Transform>();
         foreach (Transform t in transform)
         {
@@ -33,6 +35,7 @@ public class DeployBomb : MonoBehaviour {
     IEnumerator waitForSelectionThenBombAndReset(Team senderTeam)
     {
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        AM.PlaySound("Falling");
         sendBomb(camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 2)), senderTeam); 
         SR.enabled = false;
     }
@@ -41,6 +44,8 @@ public class DeployBomb : MonoBehaviour {
     {
         Transform bomb = Bombs.Dequeue();
         bomb.transform.position = new Vector3(Pos.x, transform.position.y);
+
+        bomb.gameObject.SetActive(true);
         if (senderTeam.Equals(Team.Merry))
         {
             bomb.GetComponent<Animator>().SetBool("IsMerry", true);
@@ -49,8 +54,6 @@ public class DeployBomb : MonoBehaviour {
         {
             bomb.GetComponent<Animator>().SetBool("IsMerry", false);
         }
-
-        bomb.gameObject.SetActive(true);
         StartCoroutine(moveToTarget(Pos, bomb, senderTeam));
     }
 
@@ -61,7 +64,9 @@ public class DeployBomb : MonoBehaviour {
             bomb.transform.position = Vector3.MoveTowards(bomb.transform.position, Pos, 16 * Time.deltaTime);
             yield return null;
         }
+        AM.StopSound("Falling");
         yield return new WaitForSeconds(0.1f);
+        AM.PlaySound("Boom");
         bomb.GetComponent<Animator>().SetBool("TimeToExplode", true);
         killEnemiesAndHurtBuildings(senderTeam, Pos);
         yield return new WaitForSeconds(1);
