@@ -107,27 +107,37 @@ public class EnemyAI : MonoBehaviour {
         else
         {
             StartCoroutine(dropBombRoutinely());
-            int selectedPop = 0;
             while (myBases.Count > 0 && otherBases.Count > 0)
             {
+                int selectedPop = 0;
                 categorizeBases();
-                int randomNumberOfMyBases = UnityEngine.Random.Range(0, numberMyBases - 1);
+                int randomNumberOfMyBases = DateTime.Now.Second % myBases.Count;
                 //random.range(a,b) is a to b inclusive, inclusive
-                int randomOtherBaseIndex = UnityEngine.Random.Range(0, numberOtherBases - 1);
+                int randomOtherBaseIndex = DateTime.Now.Second % otherBases.Count;
                 int randomMyBaseIndex = 0;
                 HashSet<Base> selectedBases = new HashSet<Base>();
-
+                
                 for (int i = 0; i <= randomNumberOfMyBases; i++)
                 {
-                    randomMyBaseIndex = UnityEngine.Random.Range(0, numberMyBases - 1);
+                    randomMyBaseIndex = DateTime.Now.Second % myBases.Count;
                     selectedBases.Add(myBases[randomMyBaseIndex]);
                     selectedPop += myBases[randomMyBaseIndex].myPopulation()/2;
                 }
+                /*
+                if (selectedBases.Count == 0)
+                {
+                    foreach (Base b in myBases)
+                    {
+                        selectedPop += b.myPopulation() / 2;
+                        selectedBases.Add(b);
+                    }
+                }*/
+                
                 target = otherBases[randomOtherBaseIndex];
-                if (target != null && selectedBases.Count != 0 && target.myPopulation() - selectedPop < 0)
+                if (target != null && selectedBases.Count != 0 && target.myPopulation() - (selectedPop / 2.0f) < 0)
                     //troop sender does a lot to tie things together
                     TroopSender.main(selectedBases, target, myTeam);
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(.8f);
             }
             if (myBases.Count == 0)
             {
